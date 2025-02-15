@@ -1,0 +1,15 @@
+While working on the XPath task, I encountered a challenge in locating elements inside the Shadow DOM.
+Since standard XPath does not penetrate Shadow DOM boundaries, XPath does NOT work inside shadow DOMs directly because the shadow root 
+creates a separate DOM tree that XPath cannot access.
+
+To access the input box with the placeholder text "Enter pizza name", 
+we need to execute JavaScript in the browser console to traverse the Shadow DOM and retrieve the element. 
+
+this is console command => document.querySelector("#userName").shadowRoot.querySelector("#app2").shadowRoot.querySelector("#pizza")
+
+in playwright we have to do like =>
+const userNameShadowRoot = document.querySelector('#userName').shadowRoot;
+const app2ShadowRoot = document.querySelector('#app2').shadowRoot;
+const inputElement = app2ShadowRoot.querySelector('input[placeholder="Enter pizza name"]');
+
+now you can perform teh shadow element action
